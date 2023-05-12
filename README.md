@@ -16,7 +16,12 @@ https://133dzs-dongzheming-2023-main-hixde5.streamlit.app/
 ### 输入：待检测的图片。    
 ### 输出：检测结果。
 
-## 参考文献
+## 参考资料
+模型训练代码请参考：
+
+```
+https://github.com/ultralytics/yolov5
+```
 
 Ghost-Net论文链接：
 
