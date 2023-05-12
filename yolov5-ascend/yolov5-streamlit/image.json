@@ -1,0 +1,17 @@
+{
+    "01": {
+        "data_path": "images/test_img_01.jpg"
+    },
+    "02": {
+        "data_path": "images/test_img_02.jpg"
+    },
+    "03": {
+        "data_path": "images/test_img_03.jpg"
+    },
+    "04": {
+        "data_path": "images/test_img_04.jpg"
+    },
+    "05": {
+        "data_path": "images/test_img_05.jpg"
+    }
+}
