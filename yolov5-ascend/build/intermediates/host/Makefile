@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zmd/Prj_310/ba9/cplus/yolov5cpp/src
+CMAKE_SOURCE_DIR = /home/HwHiAiUser/code/test/yolov5cpp/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host
+CMAKE_BINARY_DIR = /home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/CMakeFiles /home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/CMakeFiles /home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -168,6 +168,33 @@ main: cmake_check_build_system
 main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
+
+dvpp_preProcess.o: dvpp_preProcess.cpp.o
+
+.PHONY : dvpp_preProcess.o
+
+# target to build an object file
+dvpp_preProcess.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/dvpp_preProcess.cpp.o
+.PHONY : dvpp_preProcess.cpp.o
+
+dvpp_preProcess.i: dvpp_preProcess.cpp.i
+
+.PHONY : dvpp_preProcess.i
+
+# target to preprocess a source file
+dvpp_preProcess.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/dvpp_preProcess.cpp.i
+.PHONY : dvpp_preProcess.cpp.i
+
+dvpp_preProcess.s: dvpp_preProcess.cpp.s
+
+.PHONY : dvpp_preProcess.s
+
+# target to generate assembly for a file
+dvpp_preProcess.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/dvpp_preProcess.cpp.s
+.PHONY : dvpp_preProcess.cpp.s
 
 inference.o: inference.cpp.o
 
@@ -250,33 +277,6 @@ model_process.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/model_process.cpp.s
 .PHONY : model_process.cpp.s
 
-udpTransmit.o: udpTransmit.cpp.o
-
-.PHONY : udpTransmit.o
-
-# target to build an object file
-udpTransmit.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/udpTransmit.cpp.o
-.PHONY : udpTransmit.cpp.o
-
-udpTransmit.i: udpTransmit.cpp.i
-
-.PHONY : udpTransmit.i
-
-# target to preprocess a source file
-udpTransmit.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/udpTransmit.cpp.i
-.PHONY : udpTransmit.cpp.i
-
-udpTransmit.s: udpTransmit.cpp.s
-
-.PHONY : udpTransmit.s
-
-# target to generate assembly for a file
-udpTransmit.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/udpTransmit.cpp.s
-.PHONY : udpTransmit.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -290,6 +290,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... install/local"
 	@echo "... install"
+	@echo "... dvpp_preProcess.o"
+	@echo "... dvpp_preProcess.i"
+	@echo "... dvpp_preProcess.s"
 	@echo "... inference.o"
 	@echo "... inference.i"
 	@echo "... inference.s"
@@ -299,9 +302,6 @@ help:
 	@echo "... model_process.o"
 	@echo "... model_process.i"
 	@echo "... model_process.s"
-	@echo "... udpTransmit.o"
-	@echo "... udpTransmit.i"
-	@echo "... udpTransmit.s"
 .PHONY : help
 
 

@@ -13,28 +13,26 @@
 
 
 enum Result {
-    SUCCESS           = (0),       /* 成功 */
-    FAILED            = (-1),      /* 失败 */
-    CRC_ERR           = (0x1 << 0),/* crc计算错误 */
-    FILE_OPEN_ERR     = (0x1 << 1),/* 文件创建失败 */
-    FILE_WRITE_ERR    = (0x1 << 2),/* 文件写入失败 */
-    FILE_ORD_ERR      = (0x1 << 3),/* 文件编号不存在 */
-    FILE_VER_ERR      = (0x1 << 4),/* 版本信息文件更新失败 */
-    FILE_TYPE_ERR     = (0x1 << 5),/*文件类型错误*/
-    FILE_LANGUAGE_ERR = (0x1 << 6),/* 语言类型错误 */
-    NO_PIC_INDEX      = (0x1 << 7),/* 无此图片 */
-    NO_MODEL_INDEX    = (0x1 << 8),/* 无此模型 */
-    NO_INFO_INDEX     = (0x1 << 9),/* 无此信息 */
-    NO_DETECT_RES     = (0x1 << 10)/* 无此推理结果 */
+    SUCCESS = 0,
+    FAILED = 1
 };
 
+typedef struct PicDesc {
+    std::string picName;
+    uint32_t width;
+    uint32_t height;
+    uint32_t decodeSize;
+    uint32_t inputImgFormat;
+    acldvppPixelFormat outputImgFormat;
+} PicDesc;
+
 struct Image{
-    uint32_t deImgIndex;
-    char* data;
+    void* data;
     size_t dataSize;
-    uint32_t imgWidth;
-    uint32_t imgHeight;
-    uint32_t detecId;
+    PicDesc picdesc;
+    uint32_t modelWidth;
+    uint32_t modelHeight;
+    std::string imgFormat;
 };
 
 struct BoundingBox {

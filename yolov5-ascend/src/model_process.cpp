@@ -28,7 +28,6 @@ ModelProcess::ModelProcess()
 
 ModelProcess::~ModelProcess()
 {
-    destroyAcl(deviceId_,context_,stream_);
     DestroyResource();
 }
 
@@ -38,103 +37,36 @@ void ModelProcess::DestroyResource()
         return;
     Unload();
     DestroyDesc();
+    //DestroyInput();
     DestroyOutput();
     g_isReleased_ = true;
 }
-
-void ModelProcess::destroyAcl(int32_t& deviceId,aclrtContext& context,aclrtStream& stream)
+Result ModelProcess::LoadModelFromFile(const string modelPath)
 {
-    aclError ret;
-    if (stream_ != nullptr) {
-        ret = aclrtDestroyStream(stream_);
-        if (ret != ACL_SUCCESS) {
-            ERROR_LOG("destroy stream failed");
-        }
-        stream_ = nullptr;
-    }
-    INFO_LOG("end to destroy stream");
-
-    if (context_ != nullptr) {
-        ret = aclrtDestroyContext(context_);
-        if (ret != ACL_SUCCESS) {
-            ERROR_LOG("destroy context failed");
-        }
-        context_ = nullptr;
-    }
-    INFO_LOG("end to destroy context");
-
-    ret = aclrtResetDevice(deviceId_);
-    if (ret != ACL_SUCCESS) {
-        ERROR_LOG("reset device failed");
-    }
-    INFO_LOG("end to reset device is %d", deviceId_);
-
-    ret = aclFinalize();
-    if (ret != ACL_SUCCESS) {
-        ERROR_LOG("finalize acl failed");
-    }
-    INFO_LOG("end to finalize acl");
-}
-
-
-Result ModelProcess::InitResource(int32_t& deviceId,aclrtContext& context,aclrtStream& stream){
-    // acl init 
-    const char *aclConfigPath = "./acl.json";
-    aclError ret = aclInit(aclConfigPath);
-    if (ret != ACL_SUCCESS) {
-        ERROR_LOG("acl init failed, errorCode = %d", static_cast<int32_t>(ret));
+    if (g_loadFlag_) {
+        ERROR_LOG("has already loaded a model");
         return FAILED;
     }
-    INFO_LOG("acl init success");
-
-    // set device
-    ret = aclrtSetDevice(deviceId);
+    ret = aclmdlLoadFromFile(modelPath.c_str(), &g_modelId_);
     if (ret != ACL_SUCCESS) {
-        ERROR_LOG("acl set device %d failed, errorCode = %d", deviceId, static_cast<int32_t>(ret));
+        ERROR_LOG("load model from file failed, model file is %s", modelPath.c_str());
         return FAILED;
     }
-    INFO_LOG("set device %d success", deviceId);
-
-    // create context (set current)
-    ret = aclrtCreateContext(&context, deviceId);
-    if (ret != ACL_SUCCESS) {
-        ERROR_LOG("acl create context failed, deviceId = %d, errorCode = %d",
-                  deviceId, static_cast<int32_t>(ret));
-        return FAILED;
-    }
-    INFO_LOG("create context success");
-
-    // create stream
-    ret = aclrtCreateStream(&stream);
-    if (ret != ACL_SUCCESS) {
-        ERROR_LOG("acl create stream failed, deviceId = %d, errorCode = %d",
-                  deviceId, static_cast<int32_t>(ret));
-        return FAILED;
-    }
-    INFO_LOG("create stream success");
-
-    // get run mode
-    ret = aclrtGetRunMode(&runMode_);
-    if (ret != ACL_SUCCESS) {
-        ERROR_LOG("acl get run mode failed, errorCode = %d", static_cast<int32_t>(ret));
-        return FAILED;
-    }
-    isDevice_ = (runMode_ == ACL_DEVICE);
-    INFO_LOG("get run mode success. isDevice_ = %d",isDevice_);
-
-    deviceId_ = deviceId;
-    context_ = context;
-    stream_ = stream;
-
+    g_loadFlag_ = true;
+    INFO_LOG("load model %s success,model id is %d", modelPath.c_str(),g_modelId_);
     return SUCCESS;
 }
 
-Result ModelProcess::LoadModelFromFileWithMem(const string modelPath,uint32_t &gLoadModelId_)
+Result ModelProcess::LoadModelFromFileWithMem(const string modelPath)
 {
+    if (g_loadFlag_) {
+        ERROR_LOG("has already loaded a model");
+        return FAILED;
+    }
 
     aclError ret = aclmdlQuerySize(modelPath.c_str(), &g_modelMemSize_, &g_modelWeightSize_);
     if (ret != ACL_SUCCESS) {
-        ERROR_LOG("query model failed, model file is %s,ret = %d", modelPath.c_str(),ret);
+        ERROR_LOG("query model failed, model file is %s", modelPath.c_str());
         return FAILED;
     }
 
@@ -150,7 +82,7 @@ Result ModelProcess::LoadModelFromFileWithMem(const string modelPath,uint32_t &g
         return FAILED;
     }
 
-    ret = aclmdlLoadFromFileWithMem(modelPath.c_str(), &gLoadModelId_, g_modelMemPtr_,
+    ret = aclmdlLoadFromFileWithMem(modelPath.c_str(), &g_modelId_, g_modelMemPtr_,
     g_modelMemSize_, g_modelWeightPtr_, g_modelWeightSize_);
     if (ret != ACL_SUCCESS) {
         ERROR_LOG("load model from file failed, model file is %s", modelPath.c_str());
@@ -158,11 +90,11 @@ Result ModelProcess::LoadModelFromFileWithMem(const string modelPath,uint32_t &g
     }
 
     g_loadFlag_ = true;
-    INFO_LOG("load model %s success,model id is %d", modelPath.c_str(),gLoadModelId_);
+    INFO_LOG("load model %s success,model id is %d", modelPath.c_str(),g_modelId_);
     return SUCCESS;
 }
 
-Result ModelProcess::CreateDesc(uint32_t loadId)
+Result ModelProcess::CreateDesc()
 {
     g_modelDesc_ = aclmdlCreateDesc();
     if (g_modelDesc_ == nullptr) {
@@ -170,13 +102,13 @@ Result ModelProcess::CreateDesc(uint32_t loadId)
         return FAILED;
     }
 
-    aclError ret = aclmdlGetDesc(g_modelDesc_, loadId);
+    aclError ret = aclmdlGetDesc(g_modelDesc_, g_modelId_);
     if (ret != ACL_SUCCESS) {
         ERROR_LOG("get model description failed");
         return FAILED;
     }
 
-    INFO_LOG("create model %d description success",loadId);
+    INFO_LOG("create model description success");
     return SUCCESS;
 }
 
@@ -187,8 +119,6 @@ void ModelProcess::DestroyDesc()
         g_modelDesc_ = nullptr;
     }
 }
-
-
 
 Result ModelProcess::CreateInput(void *input1, size_t input1size,
                                  void* input2, size_t input2size)
@@ -258,7 +188,6 @@ Result ModelProcess::CreateOutput()
     }
 
     size_t outputSize = aclmdlGetNumOutputs(g_modelDesc_);
-    INFO_LOG("------outputSize : %ld",outputSize);
     for (size_t i = 0; i < outputSize; ++i) {
         size_t buffer_size = aclmdlGetOutputSizeByIndex(g_modelDesc_, i);
 
@@ -306,11 +235,11 @@ void ModelProcess::DestroyOutput()
     g_output_ = nullptr;
 }
 
-Result ModelProcess::Execute(uint32_t exModelId)
+Result ModelProcess::Execute()
 {
-    aclError ret = aclmdlExecute(exModelId, g_input_, g_output_);
+    aclError ret = aclmdlExecute(g_modelId_, g_input_, g_output_);
     if (ret != ACL_SUCCESS) {
-        ERROR_LOG("execute model failed, modelId is %u, error code is %d", exModelId,ret);
+        ERROR_LOG("execute model failed, modelId is %u, error code is %d", g_modelId_,ret);
         return FAILED;
     }
 

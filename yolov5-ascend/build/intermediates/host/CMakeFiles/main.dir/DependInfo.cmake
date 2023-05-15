@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/src/inference.cpp" "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/inference.cpp.o"
-  "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/src/main.cpp" "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/main.cpp.o"
-  "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/src/model_process.cpp" "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/model_process.cpp.o"
-  "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/src/udpTransmit.cpp" "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/udpTransmit.cpp.o"
+  "/home/HwHiAiUser/code/test/yolov5cpp/src/dvpp_preProcess.cpp" "/home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/dvpp_preProcess.cpp.o"
+  "/home/HwHiAiUser/code/test/yolov5cpp/src/inference.cpp" "/home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/inference.cpp.o"
+  "/home/HwHiAiUser/code/test/yolov5cpp/src/main.cpp" "/home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/main.cpp.o"
+  "/home/HwHiAiUser/code/test/yolov5cpp/src/model_process.cpp" "/home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/CMakeFiles/main.dir/model_process.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,9 +18,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/zmd/Ascend/ascend-toolkit/latest/arm64-linux/runtime/include"
-  "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/inc"
-  "/home/zmd/Prj_310/usr_inc"
+  "/home/HwHiAiUser/Ascend/ascend-toolkit/latest/runtime/include"
+  "/home/HwHiAiUser/code/test/yolov5cpp/src/../inc"
   )
 
 # Targets to which this target links.

@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.5.1)
 
 # project information
-project(BA9_CPLUS_APP)
+project(DECODE_AND_RESIZE)
 
 # Compile options
 add_compile_options(-std=c++11)
@@ -21,29 +21,24 @@ if (NOT DEFINED ENV{INSTALL_DIR})
     MESSAGE(FATAL_ERROR "Not Defined INSTALL_DIR")
 endif()
 
+# Header path
 include_directories(
 	$ENV{INSTALL_DIR}/runtime/include/
-        /home/zmd/Prj_310/ba9/cplus/yolov5cpp/inc/
-        /home/zmd/Prj_310/usr_inc/
-	)
+        ../inc/
+)
 
 # add host lib path
 link_directories(
-        /home/zmd/Prj_310/ba9/cplus/yolov5cpp/lib/
 	$ENV{INSTALL_DIR}/runtime/lib64/stub
-        /usr/lib/aarch64-linux-gnu/
-        
-	)
+)
 
 add_executable(main
         main.cpp
         inference.cpp
         model_process.cpp
-        udpTransmit.cpp
-        )
+        dvpp_preProcess.cpp)
 
 target_link_libraries(main
-         ascendcl acl_cblas acl_dvpp stdc++ opencv_core opencv_imgproc opencv_imgcodecs pthread devmmap drvdsmi ascend_hal slog c_sec)
-#        ascendcl acl_cblas acl_dvpp stdc++ opencv_core opencv_imgproc opencv_imgcodecs pthread drvdsmi ascend_hal slog c_sec devmmap)
+        ascendcl acl_cblas acl_dvpp stdc++ opencv_core opencv_imgproc opencv_imgcodecs)
 
 install(TARGETS main DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})

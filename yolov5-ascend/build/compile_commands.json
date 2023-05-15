@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/HwHiAiUser/code/test/yolov5cpp/build/src",
+  "command": "/usr/bin/g++  -DENABLE_DVPP_INTERFACE -I/home/HwHiAiUser/Ascend/ascend-toolkit/latest/runtime/include -I/home/HwHiAiUser/code/test/yolov5cpp/src/../inc  -fPIC -O2 -Wall   -std=c++11 -o CMakeFiles/main.dir/main.cpp.o -c /home/HwHiAiUser/code/test/yolov5cpp/src/main.cpp",
+  "file": "/home/HwHiAiUser/code/test/yolov5cpp/src/main.cpp"
+},
+{
+  "directory": "/home/HwHiAiUser/code/test/yolov5cpp/build/src",
+  "command": "/usr/bin/g++  -DENABLE_DVPP_INTERFACE -I/home/HwHiAiUser/Ascend/ascend-toolkit/latest/runtime/include -I/home/HwHiAiUser/code/test/yolov5cpp/src/../inc  -fPIC -O2 -Wall   -std=c++11 -o CMakeFiles/main.dir/inference.cpp.o -c /home/HwHiAiUser/code/test/yolov5cpp/src/inference.cpp",
+  "file": "/home/HwHiAiUser/code/test/yolov5cpp/src/inference.cpp"
+},
+{
+  "directory": "/home/HwHiAiUser/code/test/yolov5cpp/build/src",
+  "command": "/usr/bin/g++  -DENABLE_DVPP_INTERFACE -I/home/HwHiAiUser/Ascend/ascend-toolkit/latest/runtime/include -I/home/HwHiAiUser/code/test/yolov5cpp/src/../inc  -fPIC -O2 -Wall   -std=c++11 -o CMakeFiles/main.dir/model_process.cpp.o -c /home/HwHiAiUser/code/test/yolov5cpp/src/model_process.cpp",
+  "file": "/home/HwHiAiUser/code/test/yolov5cpp/src/model_process.cpp"
+},
+{
+  "directory": "/home/HwHiAiUser/code/test/yolov5cpp/build/src",
+  "command": "/usr/bin/g++  -DENABLE_DVPP_INTERFACE -I/home/HwHiAiUser/Ascend/ascend-toolkit/latest/runtime/include -I/home/HwHiAiUser/code/test/yolov5cpp/src/../inc  -fPIC -O2 -Wall   -std=c++11 -o CMakeFiles/main.dir/dvpp_preProcess.cpp.o -c /home/HwHiAiUser/code/test/yolov5cpp/src/dvpp_preProcess.cpp",
+  "file": "/home/HwHiAiUser/code/test/yolov5cpp/src/dvpp_preProcess.cpp"
+}
+]

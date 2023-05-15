@@ -2,9 +2,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/main.cpp.o"
   "CMakeFiles/main.dir/inference.cpp.o"
   "CMakeFiles/main.dir/model_process.cpp.o"
-  "CMakeFiles/main.dir/udpTransmit.cpp.o"
-  "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/out/main.pdb"
-  "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/out/main"
+  "CMakeFiles/main.dir/dvpp_preProcess.cpp.o"
+  "/home/HwHiAiUser/code/test/yolov5cpp/out/main.pdb"
+  "/home/HwHiAiUser/code/test/yolov5cpp/out/main"
 )
 
 # Per-language clean rules from dependency scanning.

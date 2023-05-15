@@ -1,4 +1,4 @@
-# Install script for directory: /home/zmd/Prj_310/ba9/cplus/yolov5cpp/src
+# Install script for directory: /home/HwHiAiUser/code/test/yolov5cpp/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/../../../out" TYPE EXECUTABLE FILES "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/out/main")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/../../../out" TYPE EXECUTABLE FILES "/home/HwHiAiUser/code/test/yolov5cpp/out/main")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../../../out/main" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../../../out/main")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zmd/Prj_310/ba9/cplus/yolov5cpp/build/intermediates/host/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/HwHiAiUser/code/test/yolov5cpp/build/intermediates/host/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

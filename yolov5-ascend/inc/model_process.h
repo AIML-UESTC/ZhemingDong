@@ -39,7 +39,14 @@ public:
     * @param [in] modelPath: model path
     * @return result
     */
-    Result LoadModelFromFileWithMem(const std::string modelPath,uint32_t & gLoadModelId_);
+    Result LoadModelFromFileWithMem(const std::string modelPath);
+
+    /**
+    * @brief load model from file with mem
+    * @param [in] modelPath: model path
+    * @return result
+    */
+    Result LoadModelFromFilem(const std::string modelPath);
 
     /**
     * @brief release all acl resource
@@ -55,7 +62,7 @@ public:
     * @brief create model desc
     * @return result
     */
-    Result CreateDesc(uint32_t loadId);
+    Result CreateDesc();
 
     /**
     * @brief destroy desc
@@ -91,7 +98,7 @@ public:
     * @brief model execute
     * @return result
     */
-    Result Execute(uint32_t exModelId);
+    Result Execute();
 
     /**
     * @brief get model output data
@@ -99,8 +106,6 @@ public:
     */
     aclmdlDataset *GetModelOutputData();
 
-    Result InitResource(int32_t& deviceId,aclrtContext& context,aclrtStream& stream);
-    void destroyAcl(int32_t& deviceId,aclrtContext& context,aclrtStream& stream);
 private:
     bool g_loadFlag_;  // model load flag
     uint32_t g_modelId_;
@@ -113,10 +118,4 @@ private:
     aclmdlDataset *g_output_;
 
     bool g_isReleased_;
-    
-    bool isDevice_;
-    int32_t deviceId_ = 0;
-    aclrtContext context_;
-    aclrtStream stream_;
-    aclrtRunMode runMode_;
 };
