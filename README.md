@@ -16,6 +16,12 @@ https://133dzs-dongzheming-2023-main-hixde5.streamlit.app/
 ### 输入：待检测的图片。    
 ### 输出：检测结果。
 
+## Yolov5-training
+功能：基于GhostNet的Yolov5训练代码，使用方法参考readme。
+
+## Dockerfile
+功能：将Streamlit应用程序以Docker形式进行打包的配置文件。
+
 ## 参考资料
 模型训练代码请参考：
 
